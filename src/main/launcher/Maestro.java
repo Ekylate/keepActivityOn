@@ -8,6 +8,7 @@ import java.util.Objects;
 import org.apache.commons.lang3.StringUtils;
 
 import services.IOConsoleService;
+import services.TimeCalculationService;
 
 /**
  * @author Sceok
@@ -19,6 +20,8 @@ public class Maestro {
 
 	private static Integer numberOfRepetitions;
 
+	private static Integer globalDuration;
+
 
 	/**
 	 * @param args
@@ -27,7 +30,8 @@ public class Maestro {
 	public static void main(String[] args) throws AWTException {
 		displayWelcomingText();
 		askIntervalOfRepetitions();
-		askNumberOfRepetitions();
+		askGlobalDuration();
+		calculateNumberOfRepetitions();
 		launchLoop();
 		displayEndingText();
 	}
@@ -51,21 +55,22 @@ public class Maestro {
 		IOConsoleService.displayMessageInConsole("Pourquoi tu veux me faire travailler ? :( :(");
 	}
 
-	private static void askNumberOfRepetitions() {
-		IOConsoleService.displayMessageInConsole("Combien de fois dois-je travailler ?");
+	private static void askGlobalDuration() {
+		IOConsoleService.displayMessageInConsole("Sur quelle durée dois-je être en activité ?");
 		final String fetchedDataFromConsole = IOConsoleService.fetchDataFromConsole();
-		numberOfRepetitions = fetchIntegerFromString(fetchedDataFromConsole);
+		globalDuration = fetchIntegerFromString(fetchedDataFromConsole);
 	}
 
 	private static void askIntervalOfRepetitions() {
-		IOConsoleService.displayMessageInConsole("Je dois travailler toutes les X secondes : ?");
+		IOConsoleService.displayMessageInConsole("Je dois travailler toutes les X minutes : ?");
 		final String fetchedDataFromConsole = IOConsoleService.fetchDataFromConsole();
 		intervalsDuration = fetchIntegerFromString(fetchedDataFromConsole);
 		if(Objects.nonNull(intervalsDuration)) {
-			intervalsDuration *= 1000;
+			intervalsDuration *= 60000;
 		}
 	}
 
+	//TODO : handle NumberFormatException case
 	private static Integer fetchIntegerFromString(String stringParam) {
 		if (StringUtils.isNotBlank(stringParam)) {
 			return Integer.parseInt(stringParam);
@@ -76,5 +81,9 @@ public class Maestro {
 	private static void displayEndingText() {
 		IOConsoleService.displayMessageInConsole("Aaaah ! Enfin ! J'en avais marre de travailler !");
 		IOConsoleService.displayMessageInConsole("Allez, ciao !");
+	}
+
+	private static void calculateNumberOfRepetitions() {
+		numberOfRepetitions = TimeCalculationService.calculateNumberOfLoops(globalDuration, intervalsDuration);
 	}
 }
