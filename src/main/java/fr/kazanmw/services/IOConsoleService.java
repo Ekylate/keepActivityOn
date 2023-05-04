@@ -1,4 +1,4 @@
-package services;
+package fr.kazanmw.services;
 
 import java.util.Scanner;
 

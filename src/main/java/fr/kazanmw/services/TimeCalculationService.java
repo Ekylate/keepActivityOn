@@ -1,4 +1,4 @@
-package services;
+package fr.kazanmw.services;
 
 public class TimeCalculationService {
 

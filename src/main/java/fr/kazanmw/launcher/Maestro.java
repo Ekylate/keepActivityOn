@@ -1,4 +1,4 @@
-package launcher;
+package fr.kazanmw.launcher;
 
 import java.awt.AWTException;
 import java.awt.Robot;
@@ -7,8 +7,8 @@ import java.util.Objects;
 
 import org.apache.commons.lang3.StringUtils;
 
-import services.IOConsoleService;
-import services.TimeCalculationService;
+import fr.kazanmw.services.IOConsoleService;
+import fr.kazanmw.services.TimeCalculationService;
 
 /**
  * @author Sceok
