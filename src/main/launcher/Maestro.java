@@ -56,9 +56,10 @@ public class Maestro {
 	}
 
 	private static void askGlobalDuration() {
-		IOConsoleService.displayMessageInConsole("Sur quelle durée dois-je être en activité ?");
+		IOConsoleService.displayMessageInConsole("Sur quelle durée (minutes) dois-je être en activité ?");
 		final String fetchedDataFromConsole = IOConsoleService.fetchDataFromConsole();
-		globalDuration = fetchIntegerFromString(fetchedDataFromConsole);
+		final Integer intermediateVar = fetchIntegerFromString(fetchedDataFromConsole);
+		globalDuration = Objects.nonNull(intermediateVar) ? intermediateVar*60 : 600;
 	}
 
 	private static void askIntervalOfRepetitions() {
@@ -66,7 +67,7 @@ public class Maestro {
 		final String fetchedDataFromConsole = IOConsoleService.fetchDataFromConsole();
 		intervalsDuration = fetchIntegerFromString(fetchedDataFromConsole);
 		if(Objects.nonNull(intervalsDuration)) {
-			intervalsDuration *= 60000;
+			intervalsDuration *= 60;
 		}
 	}
 
