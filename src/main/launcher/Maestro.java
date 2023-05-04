@@ -29,8 +29,8 @@ public class Maestro {
 	 */
 	public static void main(String[] args) throws AWTException {
 		displayWelcomingText();
-		askIntervalOfRepetitions();
 		askGlobalDuration();
+		askIntervalOfRepetitions();
 		calculateNumberOfRepetitions();
 		launchLoop();
 		displayEndingText();
@@ -42,7 +42,7 @@ public class Maestro {
 			typeKeyWithRobot(robot, KeyEvent.VK_WINDOWS);
 			robot.delay(1000);
 			typeKeyWithRobot(robot, KeyEvent.VK_ESCAPE);
-			robot.delay(intervalsDuration);
+			robot.delay(getIntervalDurationInMillisecondes());
 		}
 	}
 
@@ -66,9 +66,6 @@ public class Maestro {
 		IOConsoleService.displayMessageInConsole("Je dois travailler toutes les X minutes : ?");
 		final String fetchedDataFromConsole = IOConsoleService.fetchDataFromConsole();
 		intervalsDuration = fetchIntegerFromString(fetchedDataFromConsole);
-		if(Objects.nonNull(intervalsDuration)) {
-			intervalsDuration *= 60;
-		}
 	}
 
 	//TODO : handle NumberFormatException case
@@ -86,5 +83,15 @@ public class Maestro {
 
 	private static void calculateNumberOfRepetitions() {
 		numberOfRepetitions = TimeCalculationService.calculateNumberOfLoops(globalDuration, intervalsDuration);
+	}
+
+	private static int getIntervalDurationInMinutes() {
+		return intervalsDuration;
+	}
+	private static int getIntervalDurationInSecondes() {
+		return getIntervalDurationInMinutes()*60;
+	}
+	private static int getIntervalDurationInMillisecondes() {
+		return getIntervalDurationInSecondes()*1000;
 	}
 }
