@@ -3,7 +3,6 @@ package fr.kazanmw.launcher;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
-import java.util.Objects;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -40,7 +39,7 @@ public class Maestro {
 		final Robot robot = new Robot();
 		for (int i = 0; i < numberOfRepetitions; i++) {
 			typeKeyWithRobot(robot, KeyEvent.VK_WINDOWS);
-			robot.delay(1000);
+			robot.delay(500);
 			typeKeyWithRobot(robot, KeyEvent.VK_ESCAPE);
 			robot.delay(getIntervalDurationInMillisecondes());
 		}
@@ -58,8 +57,7 @@ public class Maestro {
 	private static void askGlobalDuration() {
 		IOConsoleService.displayMessageInConsole("Sur quelle durée (minutes) dois-je être en activité ?");
 		final String fetchedDataFromConsole = IOConsoleService.fetchDataFromConsole();
-		final Integer intermediateVar = fetchIntegerFromString(fetchedDataFromConsole);
-		globalDuration = Objects.nonNull(intermediateVar) ? intermediateVar*60 : 600;
+		globalDuration = fetchIntegerFromString(fetchedDataFromConsole);
 	}
 
 	private static void askIntervalOfRepetitions() {
@@ -82,7 +80,7 @@ public class Maestro {
 	}
 
 	private static void calculateNumberOfRepetitions() {
-		numberOfRepetitions = TimeCalculationService.calculateNumberOfLoops(globalDuration, intervalsDuration);
+		numberOfRepetitions = TimeCalculationService.calculateNumberOfLoops(getGlobalDurationInSecondes(), getIntervalDurationInSecondes());
 	}
 
 	private static int getIntervalDurationInMinutes() {
@@ -92,6 +90,16 @@ public class Maestro {
 		return getIntervalDurationInMinutes()*60;
 	}
 	private static int getIntervalDurationInMillisecondes() {
+		return getIntervalDurationInSecondes()*1000;
+	}
+
+	private static int getGlobalDurationInMinutes() {
+		return globalDuration;
+	}
+	private static int getGlobalDurationInSecondes() {
+		return getGlobalDurationInMinutes()*60;
+	}
+	private static int getGlobalDurationInMillisecondes() {
 		return getIntervalDurationInSecondes()*1000;
 	}
 }
