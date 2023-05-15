@@ -1,6 +1,8 @@
 package ui;
 
 import java.awt.EventQueue;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
@@ -14,6 +16,8 @@ import net.miginfocom.swing.MigLayout;
 
 public class MainWindow extends JFrame {
 
+	private static final String TOOLTIP_01 = "Cliquez ici pour renseigner cette information";
+	private static final String TOOLTIP_02 = "Cliquez sur le premier ou le second choix pour les renseigner";
 	private static final long serialVersionUID = 6841497333789115515L;
 	private final JPanel contentPane;
 
@@ -62,7 +66,7 @@ public class MainWindow extends JFrame {
 		final JSpinner spinner = new JSpinner();
 		panel_2.add(spinner);
 
-		final JComboBox comboBox = new JComboBox();
+		final JComboBox<String> comboBox = new JComboBox<>();
 		comboBox.setEditable(true);
 		comboBox.setMaximumRowCount(3);
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"H", "Min", "Sec"}));
@@ -78,11 +82,19 @@ public class MainWindow extends JFrame {
 
 		final JLabel lblNewLabel = new JLabel("Quand dois-je arrêter de me réveiller ?");
 		panel_4.add(lblNewLabel);
+		panel_4.setToolTipText(TOOLTIP_02);
 
 		final JPanel panel_5 = new JPanel();
+		panel_5.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+
+			}
+		});
+		panel_5.setToolTipText(TOOLTIP_01);
 		panel_3.add(panel_5, "cell 0 1,grow");
 
-		final JLabel lblNewLabel_1 = new JLabel("Dans...");
+		final JLabel lblNewLabel_1 = new JLabel("dans...");
 		panel_5.add(lblNewLabel_1);
 
 		final JPanel panel_5_1 = new JPanel();
@@ -90,11 +102,13 @@ public class MainWindow extends JFrame {
 
 		final JLabel lblNewLabel_1_1 = new JLabel("OU");
 		panel_5_1.add(lblNewLabel_1_1);
+		panel_5_1.setToolTipText(TOOLTIP_02);
 
 		final JPanel panel_5_1_1 = new JPanel();
 		panel_3.add(panel_5_1_1, "cell 0 3,grow");
 
 		final JLabel lblNewLabel_1_1_1 = new JLabel("à cette heure précise :");
 		panel_5_1_1.add(lblNewLabel_1_1_1);
+		panel_5_1_1.setToolTipText(TOOLTIP_01);
 	}
 }
