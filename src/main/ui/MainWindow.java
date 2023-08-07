@@ -88,9 +88,11 @@ public class MainWindow extends JFrame {
 		panel_5.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-
+			MainWindow.this.openTimeFormFrame();
 			}
+
 		});
+
 		panel_5.setToolTipText(TOOLTIP_01);
 		panel_3.add(panel_5, "cell 0 1,grow");
 
@@ -105,10 +107,22 @@ public class MainWindow extends JFrame {
 		panel_5_1.setToolTipText(TOOLTIP_02);
 
 		final JPanel panel_5_1_1 = new JPanel();
+		panel_5_1_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				MainWindow.this.openTimeFormFrame();
+			}
+		});
 		panel_3.add(panel_5_1_1, "cell 0 3,grow");
 
 		final JLabel lblNewLabel_1_1_1 = new JLabel("à cette heure précise :");
 		panel_5_1_1.add(lblNewLabel_1_1_1);
 		panel_5_1_1.setToolTipText(TOOLTIP_01);
+	}
+
+	private void openTimeFormFrame() {
+		// TODO Auto-generated method stub
+		final TimeFormFrame popupWindow = new TimeFormFrame();
+		popupWindow.setVisible(true);
 	}
 }
