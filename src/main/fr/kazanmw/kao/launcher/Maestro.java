@@ -1,4 +1,4 @@
-package launcher;
+package fr.kazanmw.kao.launcher;
 
 import java.awt.AWTException;
 import java.awt.Robot;

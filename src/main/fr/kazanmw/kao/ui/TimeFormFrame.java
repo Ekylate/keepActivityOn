@@ -1,4 +1,4 @@
-package ui;
+package fr.kazanmw.kao.ui;
 
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
