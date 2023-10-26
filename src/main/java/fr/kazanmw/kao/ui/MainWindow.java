@@ -18,6 +18,7 @@ public class MainWindow extends JFrame {
 
 	private static final String TOOLTIP_01 = "Cliquez ici pour renseigner cette information";
 	private static final String TOOLTIP_02 = "Cliquez sur le premier ou le second choix pour les renseigner";
+	private static final String TOOLTIP_UNAVAILABLE_FEATURE = "Fonctionnalité non disponible pour le moment";
 	private static final long serialVersionUID = 6841497333789115515L;
 	private final JPanel contentPane;
 
@@ -112,11 +113,12 @@ public class MainWindow extends JFrame {
 		panel_5_1.setToolTipText(TOOLTIP_02);
 
 		final JPanel panel_5_1_1 = new JPanel();
-		panel_5_1_1.addMouseListener(mouseAdapter);
+//		panel_5_1_1.addMouseListener(mouseAdapter);
 		panel_3.add(panel_5_1_1, "cell 0 3,grow");
 
 		final JLabel lblNewLabel_1_1_1 = new JLabel("à cette heure précise :");
+		lblNewLabel_1_1_1.setEnabled(false);
 		panel_5_1_1.add(lblNewLabel_1_1_1);
-		panel_5_1_1.setToolTipText(TOOLTIP_01);
+		panel_5_1_1.setToolTipText(TOOLTIP_UNAVAILABLE_FEATURE);
 	}
 }
