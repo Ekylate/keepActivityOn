@@ -1,6 +1,7 @@
 package fr.kazanmw.kao.ui;
 
 import java.awt.EventQueue;
+import java.awt.SystemColor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -43,14 +44,16 @@ public class MainWindow extends JFrame {
 	 */
 	public MainWindow() {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setBounds(100, 100, 300, 263);
+		this.setBounds(100, 100, 300, 303);
 		this.contentPane = new JPanel();
+		this.contentPane.setBackground(SystemColor.activeCaptionBorder);
 		this.contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		this.setContentPane(this.contentPane);
 		this.contentPane.setLayout(new MigLayout("", "[310px]", "[72px][10px]"));
 
 		final JPanel panel_1 = new JPanel();
+		panel_1.setBackground(SystemColor.info);
 		this.contentPane.add(panel_1, "cell 0 0,alignx center,aligny center");
 		panel_1.setLayout(new MigLayout("", "[188px][10px]", "[24px][]"));
 
@@ -58,9 +61,11 @@ public class MainWindow extends JFrame {
 		panel_1.add(panel, "cell 0 0,alignx left,aligny top");
 
 		final JLabel questionOneLabel = new JLabel("À quel intervalle dois-je me réveiller ?");
+		questionOneLabel.setBackground(SystemColor.info);
 		panel.add(questionOneLabel);
 
 		final JPanel panel_2 = new JPanel();
+		panel_2.setBackground(SystemColor.info);
 		panel_1.add(panel_2, "cell 0 1,alignx center,aligny center");
 
 		final JSpinner spinner = new JSpinner();
@@ -74,10 +79,12 @@ public class MainWindow extends JFrame {
 		panel_2.add(comboBox);
 
 		final JPanel panel_3 = new JPanel();
+		panel_3.setBackground(SystemColor.info);
 		this.contentPane.add(panel_3, "cell 0 1,alignx center,aligny center");
 		panel_3.setLayout(new MigLayout("", "[195px,grow]", "[24px][grow][grow][grow][]"));
 
 		final JPanel panel_4 = new JPanel();
+		panel_4.setBackground(SystemColor.info);
 		panel_3.add(panel_4, "cell 0 0,alignx left,aligny top");
 
 		final JLabel lblNewLabel = new JLabel("Quand dois-je arrêter de me réveiller ?");
@@ -100,6 +107,7 @@ public class MainWindow extends JFrame {
 		panel_5.add(lblNewLabel_1);
 
 		final JPanel panel_5_1 = new JPanel();
+		panel_5_1.setBackground(SystemColor.info);
 		panel_3.add(panel_5_1, "cell 0 2,grow");
 
 		final JLabel lblNewLabel_1_1 = new JLabel("OU");
