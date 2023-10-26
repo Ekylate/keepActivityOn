@@ -92,6 +92,8 @@ public class MainWindow extends JFrame {
 
 		final TimeFormFrameOpenerButtonListener mouseAdapter = new TimeFormFrameOpenerButtonListener();
 
+		mouseAdapter.setTimeFormFrameParent(this);
+
 		final JPanel panel_5 = new JPanel();
 		panel_5.addMouseListener(mouseAdapter);
 

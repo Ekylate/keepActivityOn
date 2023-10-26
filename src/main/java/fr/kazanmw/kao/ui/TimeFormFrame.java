@@ -1,6 +1,7 @@
 package fr.kazanmw.kao.ui;
 
 import java.awt.Component;
+import java.awt.Frame;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -23,8 +24,9 @@ public class TimeFormFrame extends JDialog {
 	private static final long serialVersionUID = -5769229015939015571L;
 	private final JPanel panel_4;
 
-	public TimeFormFrame() {
+	public TimeFormFrame(Frame parentParam) {
 
+		super(parentParam);
 		final Box verticalBox = Box.createVerticalBox();
 		final GroupLayout groupLayout = new GroupLayout(this.getContentPane());
 		groupLayout.setHorizontalGroup(
@@ -89,6 +91,8 @@ public class TimeFormFrame extends JDialog {
 		});
 		panel_3.add(btnNewButton_1_1);
 		this.getContentPane().setLayout(groupLayout);
+		this.setBounds(parentParam.getX()+25, parentParam.getY()+50, 249, 199);
+		this.setModal(true);
 	}
 
 	private void eraseValues() {
